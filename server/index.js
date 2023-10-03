@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
   res.send("Backend is running");
 });
 
+// Routes
 const authRouter = require("./routes/auth");
 app.use("/api/auth", authRouter);
 const tasksRouter = require("./routes/tasks");

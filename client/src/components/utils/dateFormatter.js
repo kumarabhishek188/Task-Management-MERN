@@ -1,3 +1,4 @@
+// Convert timestamp to date format
 export default function dateFormatter(timestamp) {
   let newTime = new Date(timestamp)
   let day = newTime.getDate()

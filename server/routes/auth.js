@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { generateAccessToken } = require("../utils");
 
+// register new user
 router.post("/register", async (req, res) => {
   try {
     if (!req.body.username || !req.body.password)
@@ -29,6 +30,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// login user
 router.post("/login", async (req, res) => {
   try {
     const userClient = {
@@ -53,7 +55,6 @@ router.post("/login", async (req, res) => {
       username: userClient.username,
       userId: user._id,
     });
-    // we will manually handle the expiration of the refresh token if we need to
     const refreshToken = jwt.sign(
       { username: userClient.username },
       process.env.REFRESH_TOKEN_SECRET
@@ -69,6 +70,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// refresh access token
 router.post("/refresh_token", async (req, res) => {
   try {
     const refreshToken = req.body.token;

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/layout/Header";
-import "./Entry.css";
 import Input from "../../components/common/MUI-themed/Input";
+import "./Entry.css";
 
 const Entry = () => {
   let navigate = useNavigate();
@@ -24,7 +24,6 @@ const Entry = () => {
           password,
         }
       );
-      // console.log(data);
       localStorage.setItem("mern-task-management/user", JSON.stringify(data));
       navigate("/");
     } catch (e) {

@@ -4,6 +4,7 @@ const Users = require("../models/users");
 const Tasks = require("../models/tasks");
 const { authenticateToken } = require("../utils");
 
+// get all tasks
 router.get("/tasks", authenticateToken, async (req, res) => {
   try {
     const tasks = await Tasks.find({
@@ -17,6 +18,7 @@ router.get("/tasks", authenticateToken, async (req, res) => {
   }
 });
 
+// get task by id
 router.get("/task/:id", authenticateToken, async (req, res) => {
   try {
     const task = await Tasks.findOne({
@@ -32,6 +34,7 @@ router.get("/task/:id", authenticateToken, async (req, res) => {
   }
 });
 
+// create new task
 router.post("/tasks", authenticateToken, async (req, res) => {
   try {
     if (
@@ -55,6 +58,7 @@ router.post("/tasks", authenticateToken, async (req, res) => {
   }
 });
 
+// update task
 router.put("/tasks/:id", authenticateToken, async (req, res) => {
   const task = req.body.task;
   if (task === undefined)
@@ -80,6 +84,7 @@ router.put("/tasks/:id", authenticateToken, async (req, res) => {
   }
 });
 
+// delete task
 router.delete("/tasks/:id", authenticateToken, async (req, res) => {
   try {
     const targetTask = await Tasks.findOne({
