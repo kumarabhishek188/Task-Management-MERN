@@ -44,7 +44,7 @@ To successfully complete this project, I completed the following requirements:
 - **Task Management:** Create, read, update, and delete tasks.
 - **User Authentication:** Register, log in, and log out users. Only authenticated users can manage tasks.
 - **Responsive Design:** The application is designed to work well on various screen sizes.
-- **Deployment:** The application is deployed and accessible online ([MERN Task Management App](https://example.com)).
+- **Deployment:** The application is deployed and accessible online ([MERN Task Management App](https://mern-task-management-client.vercel.app/)).
 - **Tech Stack:** MERN stack with TailwindCSS
 
 ## Installation

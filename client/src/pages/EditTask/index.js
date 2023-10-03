@@ -54,7 +54,7 @@ const NewTask = () => {
     getTask();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="p-8">Loading...</div>;
 
   return (
     <div className="full-page new-task-page p-8 bg-white">
