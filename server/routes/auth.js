@@ -9,24 +9,30 @@ const { generateAccessToken } = require("../utils");
 // register new user
 router.post("/register", async (req, res) => {
   try {
-    if (!req.body.username || !req.body.password)
+    const { username, password, email, country } = req.body;
+
+    // Validate all four fields
+    if (!username || !password || !email || !country) {
       return res
         .status(400)
-        .send({ msg: "Username and password are required" });
-    const username = req.body.username;
-    if (
-      await Users.findOne({
-        username: username,
-      })
-    )
-      return res.status(400).send({ msg: "Username already exists" });
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const userClient = { username: username, password: hashedPassword };
-    const newUser = new Users(userClient);
+        .json({ msg: "Username, password, email and country are required" });
+    }
+
+    // Check for existing user/email
+    if (await Users.findOne({ username })) {
+      return res.status(400).json({ msg: "Username already exists" });
+    }
+
+
+    // Hash & save
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new Users({ username, password: hashedPassword, email, country });
     await newUser.save();
+
     res.status(201).json({ msg: "User created" });
   } catch (e) {
-    res.status(500);
+    console.error(e);
+    res.status(500).json({ msg: "Internal server error" });
   }
 });
 
